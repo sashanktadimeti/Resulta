@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            clifford: "#da373d", // Custom color example, use if needed
+          },
+        },
+      },
+    };
+  </script>
+
+  <body>
+    <div
+      class="flex   ml-32 mt-24 py-9 px-3"
+    >
+      <div class="w-30%">
+        <button class="p-2 m-1 bg-red-400 text-white rounded-md" id="play">
+          ▶️
+        </button>
+      </div>
+      <audio id="song">
+        <source src="../audio/ninethsong.mp3" type="audio/mpeg" />
+        Your browser does not support the audio element.
+      </audio>
+      <div class="px-2 py-2 w-70% h-7 flex" id="musicallines"></div>
+    </div>
+
+    <script>
+      var count = 0;
+      document.getElementById("play").addEventListener("click", function () {
+        var intensities = JSON.parse("<%-intensities%>");
+        console.log(intensities)
+        const song = document.getElementById("song");
+        const maxIntensity = Math.max(...intensities);
+        for (let i = 0; i < intensities.length; i++) {
+          setTimeout(() => {
+            const musicalines = document.getElementById("musicallines");
+            const div = document.createElement("div");
+            const height = Math.ceil((intensities[i] / maxIntensity) *40); 
+            console.log(height)
+            if(height<=5){
+              div.style.height="5px"
+            }
+            else{
+            div.style.height = height+"px"
+            }
+            div.style.width = "3px";
+            div.style.borderRadius = "40px";
+            div.style.backgroundColor = "gray";
+            div.style.padding = "1px";
+            div.style.margin = "1px";
+            musicalines.appendChild(div);
+            count += 1;
+          }, i * 1000);
+        }
+        song.play();
+      });
+    </script>
+  </body>
+</html>
