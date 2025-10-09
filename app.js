@@ -12,8 +12,7 @@ const evaluationschema = require("./models/reevaluations.js");
 const newModel = require("./models/displaymodel.js");
 
 const app = express();
-const DATABASE_URL = "mongodb+srv://sashanktadimeti4:1i8eYNIhHzVqHdQO@cluster0.gqal6.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
-const port = 10000;
+const DATABASE_URL = ""
 
 const store = new MongoDBStore({
     uri: DATABASE_URL,
